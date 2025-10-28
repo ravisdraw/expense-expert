@@ -1,2 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Balthazar&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-bal: "Balthazar", sans-serif; 
+  --font-ala: "Alata", sans-serif; 
+}

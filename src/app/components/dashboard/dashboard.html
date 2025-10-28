@@ -1,0 +1,46 @@
+<div class="w-full h-full font-bal">
+    <div class="w-full h-[10%] flex justify-between place-items-center px-10">
+        <div class="text-2xl">Dashboard</div>
+        <!-- <div>Toggle</div> -->
+        <div>
+            <img class="w-8" src="assets/svg/profile_icon.svg" alt="profile_icon">
+        </div>
+    </div>
+    <div class="w-full h-[45%] flex">
+        <div class="h-full w-[50%] p-2 flex flex-wrap gap-2 justify-end">
+            @for (data of dashboardData; track data.key) {
+                <div class="bg-white rounded-sm h-[50%] w-[45%] p-5 flex flex-col gap-2 justify-center">
+                    <div class="text-[1rem]">{{data.title}}</div>
+                    <div class="font-ala text-4xl">{{data.amount}}</div>
+                    <div class="text-[0.9rem] text-gray-300">
+                        @if (data.percent) {
+                            <span class="text-[1rem]"  [ngClass]="data.isPositive ? 'text-green-400' : 'text-red-400'">↑ {{data.percent}} </span>
+                        }
+                        {{data.description}}</div>
+                </div>
+            }
+        </div>
+        <div class="h-full w-[50%] flex gap-2 justify-start p-2">
+         @for (data of dashboardItems; track data.key) {
+                <div class="bg-white rounded-sm h-full w-[45%] p-5 flex flex-col gap-2 justify-center">
+                    <div class="text-[1rem]">{{data.title}}</div>
+                    <div class="font-ala text-4xl">{{data.amount}}</div>
+                    <div class="text-[0.9rem] text-gray-300">
+                        @if (data.percent) {
+                            <span class="text-[1rem]"  [ngClass]="data.isPositive ? 'text-green-400' : 'text-red-400'">↑ {{data.percent}} </span>
+                        }
+                        {{data.description}}</div>
+
+                    <div class="h-[50%] w-full bg-amber-900">
+                        chart
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="w-full h-[45%]">
+          <div class="h-full w-full p-2 pl-14">
+            <div class="bg-white rounded-sm h-full w-[47%]">card1</div>
+        </div>
+    </div>
+</div>
