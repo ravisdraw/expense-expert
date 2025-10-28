@@ -1,3 +1,75 @@
-<div class="w-full h-full bg-pink-500">
-    test
+<div class="w-full h-full font-bal">
+    <div class="w-full h-[10%] flex justify-between place-items-center px-10">
+        <div class="text-2xl">Monthly Planner</div>
+    </div>
+    <div class="w-full h-[90%] flex">
+        <div class="w-[60%] h-full p-3">
+            @if (plans.length > 0) {
+            <div class="overflow-x-auto mt-6">
+                <table class="min-w-full border-collapse border border-gray-200">
+                    <thead class="bg-blue-50">
+                        <tr>
+                            <th class="border border-gray-200 px-4 py-2 text-left">Month</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left">Category</th>
+                            <th class="border border-gray-200 px-4 py-2 text-right">Planned Amount (₹)</th>
+                            <th class="border border-gray-200 px-4 py-2 text-left">Note</th>
+                            <th class="border border-gray-200 px-4 py-2 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (plan of plans;track plan; let i = $index) {
+                        <tr 
+                            class="odd:bg-white even:bg-gray-50 hover:bg-blue-50">
+                            <td class="border border-gray-200 px-4 py-2">{{ plan.month | date:'MMMM yyyy' }}</td>
+                            <td class="border border-gray-200 px-4 py-2">{{ plan.category }}</td>
+                            <td class="border border-gray-200 px-4 py-2 text-right font-medium">{{ plan.plannedAmount |
+                                rupeeFormat}}</td>
+                            <td class="border border-gray-200 px-4 py-2">{{ plan.note }}</td>
+                            <td class="border border-gray-200 px-4 py-2 text-center">
+                                <button (click)="deletePlan(i)"
+                                    class="text-red-600 hover:text-red-800 font-semibold">Delete</button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            }
+
+            @if (plans.length === 0) {
+            <p class="text-center text-gray-500 mt-6">No plans saved yet</p>
+            }
+        </div>
+        <div class="w-[40%] h-full p-3">
+            <div class="w-full p-6 bg-white rounded-xl shadow mt-8">
+                <form [formGroup]="plannerForm" (ngSubmit)="onSubmit()" class="space-y-5">
+                    <div>
+                        <label class="block text-gray-600 mb-1">Month</label>
+                        <input type="month" formControlName="month"
+                            class="w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 mb-1">Category</label>
+                        <input type="text" formControlName="category" placeholder="e.g. Groceries"
+                            class="w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 mb-1">Planned Amount</label>
+                        <input type="number" formControlName="plannedAmount" placeholder="Enter amount"
+                            class="w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300" />
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 mb-1">Note</label>
+                        <textarea formControlName="note" rows="3" placeholder="Add a note..."
+                            class="w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300"></textarea>
+                    </div>
+                    <button type="submit" [disabled]="plannerForm.invalid"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50">
+                        Save Plan
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
 </div>

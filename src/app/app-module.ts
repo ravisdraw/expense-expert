@@ -6,7 +6,7 @@ import { App } from './app';
 import { SideNav } from './components/side-nav/side-nav';
 import { DashboardModule } from './components/dashboard/dashboard-module';
 import { BaseChartDirective } from 'ng2-charts';
-import { MonthlyPlanner } from './components/monthly-planner/monthly-planner';
+import { SharedModuleModule } from './shared/shared-module';
 
 @NgModule({
   declarations: [
@@ -17,11 +17,12 @@ import { MonthlyPlanner } from './components/monthly-planner/monthly-planner';
     BrowserModule,
     AppRoutingModule,
     DashboardModule,
-    BaseChartDirective
+    BaseChartDirective,
+    SharedModuleModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
   ],
-  bootstrap: [App]
+  bootstrap: [App],
 })
 export class AppModule { }

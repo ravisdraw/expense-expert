@@ -14,9 +14,10 @@ export interface SideBottomTabs {
 
 export interface DashboardCard {
   title: string;
-  amount: string;
+  amount: number;
   percent: number;
   isPositive: boolean;
   description: string;
   key: string;
+  navPath?:string;
 }

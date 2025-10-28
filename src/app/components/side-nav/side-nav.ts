@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { SideTabs,SideBottomTabs } from '../../models/dashboard';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from '../../services/common-service';
 
 @Component({
   selector: 'app-side-nav',
@@ -10,9 +11,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SideNav implements OnInit {
 
-  constructor(private router: Router) { };
+  constructor(private router: Router,private commonService: CommonService) { };
 
-  currentPath: string = "";
+  selectedMenu: string = "dashboard";
+
+  developedPath: string[] = ["/dashboard","/monthly-planner"]
 
   sideNav: SideTabs[] = [
   { iconPath: "assets/svg/dashboard_icon.svg", key: "dashboard", value: "Dashboard", navPath: "/dashboard" },
@@ -27,13 +30,21 @@ export class SideNav implements OnInit {
   { iconPath: "assets/svg/signOut.svg", key: "signOut", value: "Sign Out", navPath: "" }
   ]
 
-navigate(path: string) {
-  this.router.navigate([path]);
-  this.currentPath = path;
+navigate(path: string, key:string) {
+  if(this.developedPath.includes(path)) {
+    this.router.navigate([path]);
+    this.commonService.setSelectedMenu(key);
+    this.selectedMenu = key;
+  } else {
+    alert("Screen Not Developed Yet!")
+  }
 }
 
   ngOnInit(): void {
-    this.navigate("/dashboard");
+    this.navigate("/dashboard", "dashboard");
+     this.commonService.getSelectedMenu().subscribe((data:string) => {
+      this.selectedMenu = data;
+    })
   }
 
 
