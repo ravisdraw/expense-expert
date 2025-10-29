@@ -1,59 +1,43 @@
-# ExpenseExpert
+Expense Expert
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+A smart and responsive personal finance management web app built using Angular, designed to help users track expenses, manage investments, and plan monthly budgets efficiently.
 
-## Development server
+Features
 
-To start a local development server, run:
+Dashboard
 
-```bash
-ng serve
-```
+1.Displays key financial insights:
+2.Monthly Expenses
+3.Total Savings
+4.Total Investments
+5.Emergency Fund Balance
+6.Total EMI Due
+7.Insurance Premiums
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Data visualized using donut charts for EMI and insurance breakdowns.
 
-## Code scaffolding
+Real-time data updates via BehaviorSubject.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Monthly Planner
 
-```bash
-ng generate component component-name
-```
+Plan and track monthly expenses by category, amount, and notes.
+CRUD operations (Add / Delete) with form validation.
+Month-based filtering using Angular pipes and reactive forms.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
+Responsive Design
 
-## Building
+Fully mobile-responsive layout built using Flexbox and CSS Grid.
+Adaptive sidebar navigation and optimized layout for small screens.
 
-To build the project run:
+Technical Highlights
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Framework: Angular 17
+Routing: Lazy-loaded feature modules (DashboardModule, PlannerModule, etc.)
+State Management: BehaviorSubject-based service store
+Forms: Reactive Forms with validation and error handling
+Pipes: Custom currency pipe for Indian Rupee (₹)
+Storage: LocalStorage for persistence
+Reusable Components: Cards, charts, form inputs
+TypeScript Interfaces: Strongly typed models for maintainability
+Chart Integration: Donut charts for data visualization
