@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Chart, DoughnutController, ArcElement, Tooltip, Legend } from 'chart.js';
 
 @Component({
@@ -11,15 +11,18 @@ export class DonutChart implements AfterViewInit  {
  @ViewChild('donutCanvas') private donutCanvas!: ElementRef<HTMLCanvasElement>;
   private chart!: Chart;
 
+  @Input() labels:string[] = [];
+  @Input() data:number[] = [];
+
   ngAfterViewInit(): void {
     // register necessary Chart.js components
     Chart.register(DoughnutController, ArcElement, Tooltip, Legend);
 
     const data = {
-      labels: ['Car', 'Bike', 'TV'],
+      labels: this.labels,
       datasets: [
         {
-          data: [10000, 5000, 2000],
+          data: this.data,
           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
           hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
         }

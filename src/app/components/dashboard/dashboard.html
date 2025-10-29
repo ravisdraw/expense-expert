@@ -6,10 +6,10 @@
             <img class="w-8" src="assets/svg/profile_icon.svg" alt="profile_icon">
         </div>
     </div>
-    <div class="w-full h-[45%] flex">
-        <div class="h-full w-[50%] p-2 flex flex-wrap gap-2 justify-end">
+    <div class="w-full h-[45%] flex max-sm:flex-col max-sm:h-full max-sm:overflow-scroll">
+        <div class="h-full w-[50%] p-2 flex flex-wrap gap-2 justify-end max-sm:w-full max-sm:flex-col max-sm:justify-start max-sm:flex-nowrap">
             @for (data of dashboardData; track data.key) {
-                <div class="bg-white rounded-sm h-[50%] w-[45%] p-5 flex flex-col gap-2 justify-center cursor-pointer" (click)="navigate(data.navPath)">
+                <div class="bg-white rounded-sm h-[50%] w-[45%] p-5 flex flex-col gap-2 justify-center cursor-pointer max-sm:w-full" (click)="navigate(data.navPath)">
                     <div class="text-[1rem]">{{data.title}}</div>
                     <div class="font-ala text-4xl">{{data.amount | rupeeFormat}}</div>
                     <div class="text-[0.9rem] text-gray-300">
@@ -20,27 +20,32 @@
                 </div>
             }
         </div>
-        <div class="h-full w-[50%] flex gap-2 justify-start p-2">
+        <div class="h-full w-[50%] flex gap-2 justify-start p-2 max-sm:w-full max-sm:flex-col">
          @for (data of dashboardItems; track data.key) {
-                <div class="bg-white rounded-sm h-full w-[45%] p-5 flex flex-col gap-2 justify-center">
+                <div class="bg-white rounded-sm h-full w-[45%] p-5 flex flex-col gap-2 justify-center max-sm:w-full">
                     <div class="text-[1rem]">{{data.title}}</div>
                     <div class="font-ala text-4xl">{{data.amount | rupeeFormat}}</div>
                     <div class="text-[0.9rem] text-gray-300">
                         @if (data.percent) {
-                            <span class="text-[1rem]"  [ngClass]="data.isPositive ? 'text-green-400' : 'text-red-400'">↑ {{data.percent}} </span>
+                            <span class="text-[1rem]"  [ngClass]="data.isPositive ? 'text-green-400' : 'text-red-400'">{{data.percent}}% </span>
                         }
                         {{data.description}}</div>
 
                     <div class="h-[50%] w-full">
-                        <app-donut-chart></app-donut-chart>
+                        <div class="flex justify-center place-items-start">
+                            <app-donut-chart [labels]="data.chartLabel || []" [data]="data.chartData || []" style="width: 170px; height: 170px;"></app-donut-chart>
+                        </div>
                     </div>
                 </div>
             }
         </div>
     </div>
-    <div class="w-full h-[45%]">
-          <div class="h-full w-full p-2 pl-14">
-            <div class="bg-white rounded-sm h-full w-[47%]">card1</div>
-        </div>
+    <div class="w-full h-[45%] max-sm:h-full">
+          <!-- <div class="h-full w-full p-2 pl-14">
+            <div class="bg-white rounded-sm h-full w-[47%]">
+                <app-bar-chart></app-bar-chart>
+                 Monthly Expense 
+            </div>
+        </div> -->
     </div>
 </div>

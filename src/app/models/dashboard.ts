@@ -20,4 +20,6 @@ export interface DashboardCard {
   description: string;
   key: string;
   navPath?:string;
+  chartLabel?:string[];
+  chartData?:number[];
 }

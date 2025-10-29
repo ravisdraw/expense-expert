@@ -55,19 +55,23 @@ export class Dashboard implements OnInit {
   dashboardItems: DashboardCard[] = [
     {
       title: 'Total EMI Due',
-      amount: 21000,
+      amount: 23000,
       percent: 20,
       isPositive: false,
       description: 'of Net Monthly Income',
-      key: 'totalEMIDue'
+      key: 'totalEMIDue',
+      chartLabel: ['TV', 'Car', 'Bike'],
+      chartData: [3000,12000,8000]
     },
     {
       title: 'Insurance Premiums',
-      amount: 15000,
+      amount: 3000,
       percent: 0, // optional if you want no arrow
       isPositive: false,
       description: 'Monthly Insurance Spent',
-      key: 'insurance'
+      key: 'insurance',
+      chartLabel: ['Health', 'Term'],
+      chartData: [1000,2000]
     },
   ]
 
